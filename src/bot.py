@@ -19,15 +19,7 @@ client = TelegramClient('session_name', API_ID, API_HASH)
 async def handle_new_message(event):
     if event.sender_id in TARGET_USERS:
         try:
-            # Способ 1: Используем send_reaction (для Telethon >= 1.24.0)
-            # await client.send_reaction(
-            #     entity=event.chat_id,
-            #     message=event.message.id,
-            #     reaction=[ReactionEmoji(emoticon="🤡")]
-            # )
-            
-            # Способ 2: Используем низкоуровневый метод (работает всегда)
-            await client(SendReactionRequest(
+                await client(SendReactionRequest(
                 peer=event.chat_id,
                 msg_id=event.message.id,
                 reaction=[ReactionEmoji(emoticon="🤡")]
